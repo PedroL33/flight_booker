@@ -1,0 +1,18 @@
+<h1>Flight information:  </h1>
+<div class="form-item">
+    <%= form_for @booking, url: bookings_path, method: :post do |f| %>
+        Flight
+        <%= f.text_field :id, :readonly => true, :value => params[:flight_select][:flight_id] %> 
+        <%= "From #{@flight.from_airport.code} to #{@flight.to_airport.code}, on " %>
+        <%= f.text_field :date, :readonly => true, :value => params[:flight_select][:date] %>
+        <%= " at #{@flight.start}" %>
+        </br></br>
+        <h1>Passenger information: </h1>
+        <%= fields_for :passenger, @booking.passenger do |fields| %>
+            <%= fields.text_field :name, :value => "Enter your name" %> </br>
+            <%= fields.text_field :email, :value => "Enter you email" %>
+        <% end %>
+        </br></br>
+        <%= f.submit "Book this flight" %>
+    <% end %>   
+<div>

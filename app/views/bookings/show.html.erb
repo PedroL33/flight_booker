@@ -1,0 +1,14 @@
+<h1>Booking Information </h1>
+
+<div class="form-item">
+    <h2>Flight Information</h2>
+    From: <%= @flight.from_airport.code %> </br>
+    To: <%= @flight.to_airport.code %> </br>
+    Date: <%= @flight.date %> </br>
+    Time: <%= @flight.start %> </br>
+    Estimated Flight Duration: <%= @flight.duration %> </br>
+    <h2>Passenger Information</h2>
+    Name: <%= @passenger.name %> </br>
+    Email: <%= @passenger.email %> </br>
+    <%= button_to "Book another flight!", root_url, method: :get %>
+</div>

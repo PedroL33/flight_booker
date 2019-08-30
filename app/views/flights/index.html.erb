@@ -1,0 +1,29 @@
+<h1>Flight Booking</h1>
+<h2>Search for flights</h2>
+<div class= "form-item">
+    <%= form_for :flight_params, url: flights_path, method: :get do |f| %>
+        <%= f.select :number_of_passengers, options_for_select(1..10), :prompt => "Number of passengers" %>
+        <%= f.collection_select(:start_id, Airport.all, :id, :code, {:prompt => 'From'}) %> 
+        <%= f.collection_select(:finnish_id, Airport.all, :id, :code, {:prompt => 'To'}) %> </br>
+        <%= f.select :date, options_from_collection_for_select(Flight.date, 'date', 'date'), :prompt => "Date" %> </br>
+        <%= f.submit "Search" %>
+    <% end %>
+</div>
+</br>
+<% if !@flights.nil? && !@flights.empty? %>
+    <h2>Flights available:</h2>
+    <div class = "form-item" >
+        <%= form_for :flight_select, url: new_booking_path, method: :get do |f| %>
+            <% @flights.each do |item| %>
+                <%= "From #{item.from_airport.code} to #{item.to_airport.code}: at #{item.start}" %>
+                <%= f.radio_button :flight_id, item.id, checked: item == @flights.first %>
+                <%= f.hidden_field :num_passengers, value: params[:flight_params][:number_of_passengers] %>
+                <%= f.hidden_field :date, value: params[:flight_params][:date] %> </br>
+            <% end %> 
+            <%= f.submit "Book this flight" %>
+        <% end %>
+    </div>
+<% elsif !@flights.nil? %>
+    No flights available.
+<% end %>
+<%= debug params %>

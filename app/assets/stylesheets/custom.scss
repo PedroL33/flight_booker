@@ -1,0 +1,52 @@
+body {
+    font-family: "Times New Roman", Times, serif;
+}
+
+.form-item {
+    margin:auto;
+    padding: 20px;
+    width: 60%;
+    overflow: hidden;
+    background-color: dodgerblue;
+    font-size: 22px;
+    color: white;
+}
+
+.form-item select {
+    padding: 5px 8px;
+    width: 100%;
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    background-image: none;
+    -webkit-appearance: none;
+    color: white;
+    text-align: center;
+}
+
+.form-item select:focus {
+    outline: none;
+}
+
+div {
+    text-align: center;
+    width: 60%;
+}
+
+input[type="submit"] {
+    background-color: dodgerblue;
+    padding: 10px 20px;
+    margin: 20px;
+    color: white;
+    font-size: 14px;
+    width: 50%;
+}
+
+h1 {
+    font-size: 2em;
+}
+
+label {
+    padding: 20px;
+    font-size: 20px;
+}
