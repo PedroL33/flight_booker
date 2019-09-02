@@ -5,16 +5,20 @@ class BookingsController < ApplicationController
     end
 
     def create 
-        passenger = Passenger.create(passenger_params)
+        passenger = Passenger.new(passenger_params)
+
         if passenger.save
-            booking = Booking.create(flight_id: params[:booking][:id], passenger_id: passenger.id)
-            if booking.save
-                redirect_to booking_path(booking.id)
+            @booking = Booking.new(flight_id: params[:booking][:id], passenger_id: passenger.id)
+            if @booking.save
+                PassengerMailMailer.with(passenger: passenger).thank_you_email.deliver_now
+                redirect_to @booking 
             else
                 flash[:danger] = "There was a problem creating the booking"
+                redirect_to root_url
             end
         else
-            flash[:danger] = "There was a problem with user information."
+            flash[:danger] = "You must include email and user name"
+            redirect_to root_url
         end
     end
 

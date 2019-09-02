@@ -1,3 +1,7 @@
+<% flash.each do |key, val| %>
+    <%= val %>
+<% end %>
+
 <h1>Flight Booking</h1>
 <h2>Search for flights</h2>
 <div class= "form-item">
@@ -26,4 +30,3 @@
 <% elsif !@flights.nil? %>
     No flights available.
 <% end %>
-<%= debug params %>
